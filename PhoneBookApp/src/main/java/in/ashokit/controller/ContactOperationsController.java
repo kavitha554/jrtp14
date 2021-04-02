@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 import in.ashokit.model.Contact;
 import in.ashokit.service.ContactService;
 
-@RestController
+@Controller
 public class ContactOperationsController {
 	
 @Autowired	
 private ContactService service;
-	
+
+
 	@GetMapping("/edit")
-	public String editContact(@RequestParam("cid")Integer contactId, Model model) {
+	public String editContact(@RequestParam("cid") Integer contactId, Model model) {
 		Contact contactObj = service.getContactById(contactId);
 		
 		model.addAttribute("contact", contactObj);
-		
 		
 		return "contact";
 		
@@ -38,6 +38,7 @@ private ContactService service;
 	else {
 		model.addAttribute("failMsg","contact Deletion failed");
 			}
+	
 	return "redirect:view-contacts";
 	
    }

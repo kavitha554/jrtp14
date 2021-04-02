@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,12 +18,13 @@ public class ContactInfoController {
 
 	@Autowired
 	private ContactService service;
+	
 	/**
-	 * This method is used to display contact form
 	 * 
 	 * @param model
 	 * @return
 	 */
+	
 	@GetMapping("/load-form")
 	public String loadForm(Model model) {
 		
@@ -43,16 +45,13 @@ public class ContactInfoController {
 		}
 		return "contact";
 	}
-	/**
-	 * 
-	 * @param model
-	 * @return
-	 */
+	
+	
 	@GetMapping("/view-contacts")
 	public String handleViewsContactHyperLink(Model model) {
 		List<Contact> allContacts = service.getAllContacts();
 		model.addAttribute("contacts", allContacts);
 		
-		return "contacts-display";
+		return "contact-display";
 	}
 }
